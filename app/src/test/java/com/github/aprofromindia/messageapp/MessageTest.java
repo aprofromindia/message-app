@@ -23,8 +23,8 @@ public class MessageTest {
 
     @Test
     public void test_getter() {
-        assertEquals(message.getId(), "1");
-        assertEquals(message.getTime(), 1);
-        assertEquals(message.getText(), "sample");
+        assertEquals("1", message.getId());
+        assertEquals(1, message.getTime());
+        assertEquals("sample", message.getText());
     }
 }

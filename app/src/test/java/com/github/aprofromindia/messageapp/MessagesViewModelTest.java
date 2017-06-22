@@ -6,8 +6,9 @@ import com.github.aprofromindia.messageapp.viewModels.MessagesViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
@@ -22,25 +23,24 @@ import static org.mockito.Mockito.when;
  * Created by Apro on 22-06-2017.
  */
 
+@RunWith(MockitoJUnitRunner.class)
 public class MessagesViewModelTest {
 
     @Mock
     WireService mockService;
-    private MessagesViewModel viewModel;
     private TestScheduler scheduler = new TestScheduler();
+    private MessagesViewModel viewModel;
 
     @Before
     public void setup() {
-        MockitoAnnotations.initMocks(this);
+        viewModel = new MessagesViewModel(mockService, scheduler);
 
         when(mockService.getMessages(0))
                 .thenReturn(Observable.just(Arrays.asList(new Message("1", 1, "sample"))));
-
-        viewModel = new MessagesViewModel(mockService, scheduler);
     }
 
     @Test
-    public void test_fetch_messages() throws InterruptedException {
+    public void test_fetch_messages() {
         // given
         viewModel.fetchMessages(0, () -> {
         });
@@ -55,7 +55,8 @@ public class MessagesViewModelTest {
     @Test
     public void test_delete_message() {
         // given
-        viewModel.fetchMessages(0, () -> {});
+        viewModel.fetchMessages(0, () -> {
+        });
         scheduler.advanceTimeBy(10, TimeUnit.SECONDS);
         assertEquals(1, viewModel.getMessages().size());
 

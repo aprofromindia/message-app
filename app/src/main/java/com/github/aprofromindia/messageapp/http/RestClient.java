@@ -17,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestClient {
     private static final String BASE_URL = "https://rawgit.com";
+    private static final int CACHE_SIZE_MB = 10 * 1024;
 
     private OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private Retrofit.Builder retroBuilder = new Retrofit.Builder()
@@ -29,7 +30,7 @@ public class RestClient {
         Retrofit retrofit = retroBuilder.client(httpClient
                 .readTimeout(60, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS)
-                .cache(new Cache(cacheDir, 10 * 1024))
+                .cache(new Cache(cacheDir, CACHE_SIZE_MB))
                 .build()).build();
         return retrofit.create(serviceClass);
     }
