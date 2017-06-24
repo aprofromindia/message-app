@@ -12,17 +12,17 @@ import com.github.aprofromindia.messageapp.ui.MainActivityProvider;
  * Created by Apro on 15-06-2017.
  */
 
-public final class MessagesFragment extends Fragment {
+public final class MessagesRetainFragment extends Fragment {
 
-    public static final String TAG = MessagesFragment.class.getSimpleName();
+    public static final String TAG = MessagesRetainFragment.class.getSimpleName();
 
     private MessagesViewModel viewModel;
 
-    public MessagesFragment() {
+    public MessagesRetainFragment() {
     }
 
-    public static MessagesFragment newInstance(@NonNull Context context) {
-        MessagesFragment fragment = new MessagesFragment();
+    public static MessagesRetainFragment newInstance(@NonNull Context context) {
+        MessagesRetainFragment fragment = new MessagesRetainFragment();
         fragment.viewModel = new MainActivityProvider().provideViewModel(context);
         return fragment;
     }

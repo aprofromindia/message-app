@@ -12,7 +12,7 @@ import com.github.aprofromindia.messageapp.R;
 import com.github.aprofromindia.messageapp.databinding.ActivityMainBinding;
 import com.github.aprofromindia.messageapp.ui.adapters.MessagesAdapter;
 import com.github.aprofromindia.messageapp.ui.views.MessageView;
-import com.github.aprofromindia.messageapp.viewModels.MessagesFragment;
+import com.github.aprofromindia.messageapp.viewModels.MessagesRetainFragment;
 import com.github.aprofromindia.messageapp.viewModels.MessagesViewModel;
 
 import lombok.val;
@@ -89,15 +89,15 @@ public final class MainActivity extends BaseActivity {
     }
 
     private MessagesViewModel getViewModel() {
-        MessagesFragment messagesFragment = (MessagesFragment) getSupportFragmentManager()
-                .findFragmentByTag(MessagesFragment.TAG);
+        MessagesRetainFragment retainFragment = (MessagesRetainFragment) getSupportFragmentManager()
+                .findFragmentByTag(MessagesRetainFragment.TAG);
 
-        if (messagesFragment == null) {
-            messagesFragment = MessagesFragment.newInstance(getApplicationContext());
+        if (retainFragment == null) {
+            retainFragment = MessagesRetainFragment.newInstance(getApplicationContext());
             getSupportFragmentManager().beginTransaction()
-                    .add(messagesFragment, MessagesFragment.TAG)
+                    .add(retainFragment, MessagesRetainFragment.TAG)
                     .commit();
         }
-        return messagesFragment.getViewModel();
+        return retainFragment.getViewModel();
     }
 }
